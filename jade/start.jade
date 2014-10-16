@@ -1,2 +1,4 @@
-.start-wrapper(ng-show='newGame')
-  h1 Start Page
+.start-wrapper(ng-hide='gameStarted')
+  h3 Welcome to Pot-o-Gold!
+  .button-bar
+    a.button.button-positive(ng-click='startGame()') Start

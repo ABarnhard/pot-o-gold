@@ -1,4 +1,5 @@
 
-<div ng-show="newGame" class="start-wrapper">
-  <h1>Start Page</h1>
+<div ng-hide="gameStarted" class="start-wrapper">
+  <h3>Welcome to Pot-o-Gold!</h3>
+  <div class="button-bar"><a ng-click="startGame()" class="button button-positive">Start</a></div>
 </div>

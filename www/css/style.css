@@ -5,6 +5,12 @@ body {
 canvas#game-canvas {
 
 }
+.start-wrapper {
+
+}
+.start-wrapper > h3 {
+  text-align: center;
+}
 
 .game-wrapper {
 

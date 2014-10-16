@@ -12,10 +12,10 @@
     <script src="js/game_controller.js"></script>
   </head>
   <body ng-app="pot-o-gold" ng-controller="MainCtrl">
-    <h1 class="title">Pot-o-gold!</h1>
     <div class="main">
-      <div ng-show="newGame" class="start-wrapper">
-        <h1>Start Page</h1>
+      <div ng-hide="gameStarted" class="start-wrapper">
+        <h3>Welcome to Pot-o-Gold!</h3>
+        <div class="button-bar"><a ng-click="startGame()" class="button button-positive">Start</a></div>
       </div>
       <div ng-show="gameStarted" class="game-wrapper">
         <canvas id="game-canvas" width="{{screenWidth}}" height="{{screenHeight}}" style="border:1px solid #000000;" ng-controller="GameCtrl"></canvas>
