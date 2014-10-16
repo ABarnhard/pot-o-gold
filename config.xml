@@ -13,8 +13,8 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <plugin name="Gyroscope" value="org.dartlang.phonegap.gyroscope.GyroscopeListener"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <plugin name="Gyroscope" value="org.dartlang.phonegap.gyroscope" />
 </widget>
