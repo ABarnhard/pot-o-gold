@@ -3,16 +3,17 @@
   <name>pot-o-gold</name>
   <description>
     A simple game with gyro
-    </description>
+  </description>
   <author email="mfbadr@gmail.com" href="http://twitter.com/MikeyBadr">
     NSS Cohort-6 Group 3
-    </author>
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <plugin name="Gyroscope" value="org.dartlang.phonegap.gyroscope.GyroscopeListener"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
