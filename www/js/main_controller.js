@@ -6,6 +6,7 @@
     $scope.title = 'Pot-O-Gold';
 
     function onSuccess(speed){
+      $scope.speed = speed;
       console.log('AngularSpeed:\n' +
             'x: ' + speed.x + '\n' +
             'y: ' + speed.y + '\n' +
