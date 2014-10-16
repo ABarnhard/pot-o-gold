@@ -4,9 +4,9 @@
   angular.module('pot-o-gold')
   .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
     $scope.title = 'Pot-O-Gold';
-
+    $scope.gameStarted = true;
     // var id = navigator.gyroscope.watchAngularSpeed(function(){}, function(){}, {frequency:500});
-
+    /*
     function onSuccess(speed){
       console.log('AngularSpeed:\n' +
             'x: ' + speed.x + '\n' +
@@ -32,6 +32,6 @@
     //var options = { frequency: 3000 };  // Update every 3 seconds
 
     //var watchID = navigator.gyroscope.watchAngularSpeed(onSuccess, onError, options);
-
+    */
   }]);
 })();

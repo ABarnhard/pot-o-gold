@@ -1,2 +1,4 @@
 
-<h1>Game Page</h1>
+<div ng-show="gameStarted" class="game-wrapper">
+  <canvas id="game-canvas" width="{{screenWidth}}" height="{{screenHeight}}" style="border:1px solid #000000;" ng-controller="GameCtrl"></canvas>
+</div>

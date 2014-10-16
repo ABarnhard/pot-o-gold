@@ -1,1 +1,11 @@
 /* Empty. Add your own CSS if you like */
+body {
+  height: 100%;
+}
+canvas#game-canvas {
+
+}
+
+.game-wrapper {
+
+}
