@@ -16,7 +16,7 @@
     }
 
     function onError(){
-        alert('onError!');
+      alert('onError!');
     }
 
     document.addEventListener('deviceready', onDeviceReady, false);
