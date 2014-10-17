@@ -2,11 +2,12 @@
   'use strict';
 
   angular.module('pot-o-gold')
-  .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
+  .controller('MainCtrl', ['$scope', '$interval', '$rootScope', function($scope, $interval, $rootScope){
     $scope.title = 'Pot-O-Gold';
 
     $scope.startGame = function(){
       $scope.gameStarted = true;
+      $rootScope.$broadcast('start');
     };
 
     // var id = navigator.gyroscope.watchAngularSpeed(function(){}, function(){}, {frequency:500});

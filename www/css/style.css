@@ -1,17 +1,9 @@
 /* Empty. Add your own CSS if you like */
+html {
+  width: 100%;
+  height: 100vh;
+}
+
 body {
-  height: 100%;
-}
-canvas#game-canvas {
-
-}
-.start-wrapper {
-
-}
-.start-wrapper > h3 {
-  text-align: center;
-}
-
-.game-wrapper {
-
+  min-height: 100%;
 }
