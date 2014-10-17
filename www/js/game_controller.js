@@ -8,6 +8,7 @@
           potY = 0,
           lepX = 0,
           lepY = 0,
+          count = 1,
           id,
           lep  = new Image();
 
@@ -71,19 +72,26 @@
 
         // Leprechaun
         ctx.save();
+        console.log('delta------------------', delta);
         if(delta){
           lepX += delta.x;
           lepY += delta.y;
         }
+        console.log(count, lepX, lepY);
         ctx.drawImage(lep, lepX, lepY, 25, 25);
         ctx.restore();
         checkStatus();
+        console.log(count, lepX, lepY);
+        count++;
       }
 
       function checkStatus(){
         if(lepX >= $scope.width || lepX < -25 || lepY >= $scope.height || lepY < -25){
+          console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX dead');
+          count = 0;
           $rootScope.$broadcast('game-over');
         }else if(Math.abs(lepX - potX) <= 5 && Math.abs(lepY - potY) <= 5){
+          console.log('win');
           $rootScope.$broadcast('win');
         }
       }
