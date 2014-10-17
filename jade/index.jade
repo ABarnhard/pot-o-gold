@@ -11,6 +11,7 @@ html
     script(src='js/main_controller.js')
     script(src='js/game_controller.js')
   body(ng-app='pot-o-gold', ng-controller='MainCtrl')
-    include ./start.jade
-    include ./game.jade
-    include ./results.jade
+    ion-pane
+      include ./start.jade
+      include ./game.jade
+      include ./results.jade
