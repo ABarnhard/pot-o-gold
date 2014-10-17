@@ -9,7 +9,8 @@
           lepX = 0,
           lepY = 0,
           id,
-          lep  = new Image();
+          lep  = new Image(),
+          bg   = new Image();
 
       $scope.$on('start', function(){
         init();
@@ -37,8 +38,9 @@
 
         console.log($scope.width, $scope.height);
 
-        pot.src = 'img/ionic.png';
-        lep.src = 'img/ionic.png';
+        pot.src = 'img/pot.png';
+        lep.src = 'img/lep.png';
+        bg.src  = 'img/bg.png';
 
         draw();
       }
@@ -48,6 +50,8 @@
 
         ctx.globalCompositeOperation = 'source-over';
         ctx.clearRect(0,0,$scope.width,$scope.height); // clear canvas
+        // Pot Of Gold
+        ctx.drawImage(bg, 0, 0, $scope.width, $scope.height);
 
         // Pot Of Gold
         ctx.drawImage(pot, potX, potY, 25, 25);
