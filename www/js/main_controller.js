@@ -11,8 +11,8 @@
     window.addEventListener('deviceorientation', setRef);
 
     function setRef(data){
-      $scope.ref.x = data.beta;
-      $scope.ref.y = data.gamma;
+      $scope.ref.x = data.gamma;
+      $scope.ref.y = data.beta;
     }
 
     $scope.startGame = function(){
@@ -37,8 +37,8 @@
 
     function getDelta(obj){
       //x = beta, y = gamma
-      $scope.delta.x = ($scope.ref.x - obj.beta) / 10;
-      $scope.delta.y = ($scope.ref.y - obj.gamma) / 10;
+      $scope.delta.x = Math.round(($scope.ref.x + obj.gamma) / 10);
+      $scope.delta.y = Math.round(($scope.ref.y + obj.beta) / 10);
 
       console.log($scope.delta);
     }
