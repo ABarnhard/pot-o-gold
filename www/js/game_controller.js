@@ -11,10 +11,6 @@
           id,
           lep  = new Image();
 
-      $scope.$on('move', function(event, data){
-        draw(data);
-      });
-
       $scope.$on('game-over', function(event, data){
         $interval.cancel(id);
         alert('Game Over');
@@ -52,11 +48,11 @@
 
         // $interval(draw, 1000);
         $timeout(draw, 200);
-
-        id = $interval(function(){
-          draw({x: -2, y: -2});
-        }, 33);
-
+        $timeout(function(){
+          $scope.$on('move', function(event, data){
+            draw(data);
+          });
+        }, 201);
       }
 
       function draw(delta){
