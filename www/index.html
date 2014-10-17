@@ -11,17 +11,15 @@
     <script src="js/main_controller.js"></script>
     <script src="js/game_controller.js"></script>
   </head>
-  <body ng-app="pot-o-gold" ng-controller="MainCtrl">
-    <ion-pane>
-      <!--h1 x: {{delta.x | number: 1}}-->
-      <!--h1 y: {{delta.y | number: 1}}-->
+  <body ng-app="pot-o-gold">
+    <ion-pane ng-controller="MainCtrl">
       <div id="start-wrapper" ng-hide="gameStarted" class="row">
         <div class="col">
           <h3>Welcome to Pot-o-Gold!</h3>
           <div class="button-bar"><a ng-click="startGame()" class="button button-positive">Start</a></div>
         </div>
       </div>
-      <div id="game-wrapper" ng-show="gameStarted" ng-controller="GameCtrl">
+      <div ng-show="gameStarted" ng-controller="GameCtrl" class="game-wrapper">
         <canvas id="game-canvas" width="{{width}}" height="{{height}}" style="border:1px solid #000000;"></canvas>
       </div>
       <div ng-show="gameOver" class="results-wrapper">

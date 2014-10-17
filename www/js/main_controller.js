@@ -2,13 +2,18 @@
   'use strict';
 
   angular.module('pot-o-gold')
-  .controller('MainCtrl', ['$scope', '$interval', '$rootScope', function($scope, $interval, $rootScope){
+  .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
     $scope.title = 'Pot-O-Gold';
     $scope.ref ={x: 0, y: 0};
     $scope.delta = {x:0, y:0};
-    var id;
+    var moveId;
 
-    //window.addEventListener('deviceorientation', setRef);
+    document.addEventListener('deviceready', onDeviceReady, false);
+    //window.addEventListener('deviceorientation', setRef, false);
+
+    function onDeviceReady(){
+      screen.lockOrientation('portrait');
+    }
 
     /*function setRef(data){
       $scope.ref.x = data.gamma;
@@ -17,20 +22,14 @@
     }*/
 
     $scope.startGame = function(){
-      $scope.gameStarted = true;
       //window.removeEventListener('deviceorientation', setRef);
       window.addEventListener('deviceorientation', getOrientation);
-      $rootScope.$broadcast('start');
-      id = $interval(function(){
+      $scope.$broadcast('start');
+      moveId = $interval(function(){
         $scope.$broadcast('move', $scope.delta);
       }, 18);
+      $scope.gameStarted = true;
     };
-
-    document.addEventListener('deviceready', onDeviceReady, false);
-
-    function onDeviceReady(){
-      screen.lockOrientation('portrait');
-    }
 
     $scope.$on('win', function(){
       clearGame();
@@ -38,26 +37,23 @@
 
     $scope.$on('game-over', function(){
       clearGame();
-      window.removeEventListener('deviceorientation', getOrientation);
+      $scope.gameStarted = false;
     });
 
     function getDelta(obj){
       //x = beta, y = gamma
       $scope.delta.x = Math.round(($scope.ref.x + obj.gamma) / 2);
       $scope.delta.y = Math.round(($scope.ref.y + obj.beta) / 2);
-
-      //console.log($scope.delta);
     }
 
     function getOrientation(data){
-        getDelta(data);
-        $scope.$digest();
+      getDelta(data);
     }
 
     function clearGame(){
       $scope.delta = {x:0, y:0};
       $scope.gameStarted = false;
-      $interval.cancel(id);
+      $interval.cancel(moveId);
     }
 
   }]);
