@@ -47,8 +47,8 @@
 
         console.log($scope.width, $scope.height);
 
-        pot.src = '../img/ionic.png';
-        lep.src = '../img/ionic.png';
+        pot.src = 'img/ionic.png';
+        lep.src = 'img/ionic.png';
 
         // $interval(draw, 1000);
         $timeout(draw, 200);

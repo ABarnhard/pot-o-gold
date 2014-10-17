@@ -12,6 +12,8 @@ html
     script(src='js/game_controller.js')
   body(ng-app='pot-o-gold', ng-controller='MainCtrl')
     ion-pane
+      //h1 x: {{delta.x | number: 1}}
+      //h1 y: {{delta.y | number: 1}}
       include ./start.jade
       include ./game.jade
       include ./results.jade

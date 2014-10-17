@@ -8,6 +8,10 @@
 
     $scope.startGame = function(){
       $scope.gameStarted = true;
+      window.addEventListener('deviceorientation', function(data){
+        getDelta(data);
+        $scope.$digest();
+      });
       $rootScope.$broadcast('start');
       window.addEventListener('deviceorientation', function(data){
         getDelta(data);
