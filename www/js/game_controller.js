@@ -11,18 +11,12 @@
           id,
           lep  = new Image();
 
-      $scope.$on('game-over', function(event, data){
-        $interval.cancel(id);
-        alert('Game Over');
-      });
-
-      $scope.$on('win', function(event, data){
-        $interval.cancel(id);
-        alert('Winner Winner Chicken Dinner!');
-      });
-
       $scope.$on('start', function(){
         init();
+      });
+
+      $scope.$on('move', function(event, data){
+        draw(data);
       });
 
       function init(){
@@ -46,13 +40,7 @@
         pot.src = 'img/ionic.png';
         lep.src = 'img/ionic.png';
 
-        // $interval(draw, 1000);
-        $timeout(draw, 200);
-        $timeout(function(){
-          $scope.$on('move', function(event, data){
-            draw(data);
-          });
-        }, 201);
+        draw();
       }
 
       function draw(delta){
@@ -61,29 +49,24 @@
         ctx.globalCompositeOperation = 'source-over';
         ctx.clearRect(0,0,$scope.width,$scope.height); // clear canvas
 
-        ctx.fillStyle = 'rgba(0,0,0,0.4)';
-        ctx.strokeStyle = 'rgba(0,153,255,0.4)';
-        ctx.save();
-        //ctx.translate(Math.floor($scope.screenWidth / 2), Math.floor($scope.screenHeight / 2));
-
         // Pot Of Gold
         ctx.drawImage(pot, potX, potY, 25, 25);
 
         // Leprechaun
-        ctx.save();
+        //ctx.save();
         if(delta){
           lepX += delta.x;
           lepY += delta.y;
         }
         ctx.drawImage(lep, lepX, lepY, 25, 25);
-        ctx.restore();
-        checkStatus();
-      }
 
-      function checkStatus(){
         if(lepX >= $scope.width || lepX < -25 || lepY >= $scope.height || lepY < -25){
+          $interval.cancel(id);
+          alert('Game Over');
           $rootScope.$broadcast('game-over');
         }else if(Math.abs(lepX - potX) <= 5 && Math.abs(lepY - potY) <= 5){
+          $interval.cancel(id);
+          alert('Winner Winner Chicken Dinner!');
           $rootScope.$broadcast('win');
         }
       }
