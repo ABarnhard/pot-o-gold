@@ -1,3 +1,5 @@
-button.button(ng-click='play()') Play
-
-button.button(ng-click='win()') Win
+.row#start-wrapper(ng-hide='gameStarted')
+  .col
+    h3 Welcome to Pot-o-Gold!
+    .button-bar
+      a.button.button-positive(ng-click='startGame()') Start
