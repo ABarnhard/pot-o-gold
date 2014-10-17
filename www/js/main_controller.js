@@ -8,18 +8,26 @@
 
     $scope.startGame = function(){
       $scope.gameStarted = true;
-      window.addEventListener('deviceorientation', function(data){
-        getDelta(data);
-        $scope.$digest();
-      });
+      window.addEventListener('deviceorientation', getOrientation);
       $rootScope.$broadcast('start');
     };
+
 
     document.addEventListener('deviceready', onDeviceReady, false);
 
     function onDeviceReady(){
       screen.lockOrientation('portrait');
     }
+
+    $scope.$on('game-over', function(){
+      console.log('game over');
+      window.removeEventListener('deviceorientation', getOrientation);
+      $scope.gameStarted = false;
+    });
+
+    $scope.$on('win', function(){
+      $scope.gameStarted = false;
+    });
 
     function getDelta(obj){
       //x = beta, y = gamma
@@ -28,6 +36,11 @@
       $scope.delta.y = ($scope.ref.y - obj.gamma) / 10;
 
       console.log($scope.delta);
+    }
+
+    function getOrientation(data){
+        getDelta(data);
+        $scope.$digest();
     }
 
   }]);

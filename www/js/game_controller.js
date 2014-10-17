@@ -47,13 +47,13 @@
             min = Math.floor(($scope.height / 2));
         lepY = Math.floor(Math.random() * (max - min + 1)) + min;
         console.log($scope.width, $scope.height);
-        pot.src = '../img/ionic.png';
-        lep.src = '../img/ionic.png';
+        pot.src = 'img/ionic.png';
+        lep.src = 'img/ionic.png';
         // $interval(draw, 1000);
         $timeout(draw, 200);
-        //id = $interval(function(){
-         // draw({x: -2, y: -2});
-        //}, 33);
+        id = $interval(function(){
+          draw({x: -2, y: -2});
+        }, 33);
       }
 
       function draw(delta){
