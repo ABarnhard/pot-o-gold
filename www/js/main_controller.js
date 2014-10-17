@@ -32,11 +32,13 @@
     function getDelta(obj){
       //x = beta, y = gamma
       $scope.delta = {};
-      $scope.delta.x = ($scope.ref.x - obj.beta) / 10;
-      $scope.delta.y = ($scope.ref.y - obj.gamma) / 10;
+      $scope.delta.x = Math.round(($scope.ref.x + obj.beta) / 10);
+      $scope.delta.y = Math.round(($scope.ref.y + obj.gamma) / 10);
 
       console.log($scope.delta);
     }
+
+
 
     function getOrientation(data){
         getDelta(data);
