@@ -4,33 +4,32 @@
   angular.module('pot-o-gold')
   .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
     $scope.title = 'Pot-O-Gold';
-
-    function onSuccess(speed){
-      $scope.speed = speed;
-      console.log('AngularSpeed:\n' +
-            'x: ' + speed.x + '\n' +
-            'y: ' + speed.y + '\n' +
-            'z: ' + speed.z + '\n' +
-            'Timestamp: ' + speed.timestamp + '\n');
-    }
-
-    function onError(){
-        alert('onError!');
-    }
+    $scope.ref ={x: 0, y: 0};
 
     document.addEventListener('deviceready', onDeviceReady, false);
 
     function onDeviceReady(){
-      console.log('navigator');
-      console.log(navigator);
-      console.log('gyroscope');
-      navigator.gyroscope.getCurrentAngularSpeed(onSuccess, onError);
+      screen.lockOrientation('portrait');
     }
 
+    $scope.play = function(){
+      alert('Let the games begin!');
+      window.addEventListener('deviceorientation', function(data){
+        console.log(data);
+        getDelta(data);
+        $scope.speed = data;
+        $scope.$digest();
+      });
+    };
 
-    //var options = { frequency: 3000 };  // Update every 3 seconds
+    function getDelta(obj){
+      //x = beta, y = gamma
+      $scope.delta = {};
+      $scope.delta.x = ($scope.ref.x - obj.beta) / 10;
+      $scope.delta.y = ($scope.ref.y - obj.gamma) / 10;
 
-    //var watchID = navigator.gyroscope.watchAngularSpeed(onSuccess, onError, options);
+      console.log($scope.delta);
+    }
 
   }]);
 })();
