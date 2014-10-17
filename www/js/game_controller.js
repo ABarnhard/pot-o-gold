@@ -52,11 +52,11 @@
 
         // $interval(draw, 1000);
         $timeout(draw, 200);
-        /*
+
         id = $interval(function(){
           draw({x: -2, y: -2});
         }, 33);
-        */
+
       }
 
       function draw(delta){
