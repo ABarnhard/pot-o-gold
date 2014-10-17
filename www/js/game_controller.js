@@ -2,21 +2,36 @@
   'use strict';
 
   angular.module('pot-o-gold')
-  .controller('GameCtrl', ['$scope', '$interval', '$timeout', function($scope, $interval, $timeout){
+  .controller('GameCtrl', ['$scope', '$interval', '$timeout', '$rootScope', function($scope, $interval, $timeout, $rootScope){
       var pot  = new Image(),
           potX = 0,
           potY = 0,
           lepX = 0,
           lepY = 0,
+          id,
           lep  = new Image();
+
       $scope.$on('move', function(event, data){
+        move(data);
+      });
+
+      $scope.$on('game-over', function(event, data){
+        $interval.cancel(id);
+        alert('Game Over');
+      });
+
+      $scope.$on('win', function(event, data){
+        $interval.cancel(id);
+        alert('Winner Winner Chicken Dinner!');
       });
 
       $scope.$on('start', function(){
         init();
       });
 
-
+      function move(data){
+        draw(data);
+      }
 
       function init(){
         var w = window,
@@ -35,10 +50,13 @@
         pot.src = '../img/ionic.png';
         lep.src = '../img/ionic.png';
         // $interval(draw, 1000);
-        $timeout(draw, 500);
+        $timeout(draw, 200);
+        id = $interval(function(){
+          draw({x: -2, y: -2});
+        }, 33);
       }
 
-      function draw(){
+      function draw(delta){
         var ctx = document.getElementById('game-canvas').getContext('2d');
 
         ctx.globalCompositeOperation = 'source-over';
@@ -54,10 +72,21 @@
 
         // Leprechaun
         ctx.save();
+        if(delta){
+          lepX += delta.x;
+          lepY += delta.y;
+        }
         ctx.drawImage(lep, lepX, lepY, 25, 25);
         ctx.restore();
+        checkStatus();
+      }
 
-        ctx.restore();
+      function checkStatus(){
+        if(lepX >= $scope.width || lepX < -25 || lepY >= $scope.height || lepY < -25){
+          $rootScope.$broadcast('game-over');
+        }else if(Math.abs(lepX - potX) <= 5 && Math.abs(lepY - potY) <= 5){
+          $rootScope.$broadcast('win');
+        }
       }
 
   }]);
