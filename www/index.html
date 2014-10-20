@@ -5,15 +5,17 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
     <script src="js/app.js"></script>
     <script src="js/main_controller.js"></script>
     <script src="js/game_controller.js"></script>
+    <script src="js/result_controller.js"></script>
   </head>
   <body ng-app="pot-o-gold">
     <ion-pane ng-controller="MainCtrl">
-      <div id="start-wrapper" ng-hide="gameStarted" class="row">
+      <div id="start-wrapper" ng-hide="gameStarted || gameOver" class="row">
         <div class="col">
           <h3>Welcome to Pot-o-Gold!</h3>
           <div class="button-bar"><a ng-click="startGame()" class="button button-positive">Start</a></div>
@@ -22,8 +24,13 @@
       <div ng-show="gameStarted" ng-controller="GameCtrl" class="game-wrapper">
         <canvas id="game-canvas" width="{{width}}" height="{{height}}" style="border:1px solid #000000;"></canvas>
       </div>
-      <div ng-show="gameOver" class="results-wrapper">
-        <h1>Results Page</h1>
+      <div ng-show="gameOver" ng-controller="ResultCtrl" class="results-wrapper">
+        <div ng-style="{'background-color': colors[color(0)]}" class="rainbow"></div>
+        <div ng-style="{'background-color': colors[color(1)]}" class="rainbow"></div>
+        <div ng-style="{'background-color': colors[color(2)]}" class="rainbow"></div>
+        <div ng-style="{'background-color': colors[color(3)]}" class="rainbow"></div>
+        <div ng-style="{'background-color': colors[color(4)]}" class="rainbow"></div>
+        <div ng-style="{'background-color': colors[color(5)]}" class="rainbow"></div>
       </div>
     </ion-pane>
   </body>

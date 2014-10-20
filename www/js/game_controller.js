@@ -69,11 +69,13 @@
 
         if(lepX >= $scope.width || lepX < -size || lepY >= $scope.height || lepY < -size){
           $interval.cancel(id);
-          alert('Game Over');
+          navigator.vibrate(500);
+          //alert('Game Over');
           $rootScope.$broadcast('game-over');
         }else if(Math.abs(lepX - potX) <= size * 0.33 && Math.abs(lepY - potY) <= size * 0.33){
           $interval.cancel(id);
-          alert('Winner Winner Chicken Dinner!');
+          navigator.vibrate(200, 500, 200, 500, 200);
+          //alert('Winner Winner Chicken Dinner!');
           $rootScope.$broadcast('win');
         }
       }
