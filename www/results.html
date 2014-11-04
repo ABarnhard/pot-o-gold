@@ -1,4 +1,9 @@
 
-<div ng-show="gameOver" class="results-wrapper">
-  <h1>Results Page</h1>
+<div ng-show="gameOver" ng-controller="ResultCtrl" class="results-wrapper">
+  <div ng-style="{'background-color': colors[color(0)]}" class="rainbow"></div>
+  <div ng-style="{'background-color': colors[color(1)]}" class="rainbow"></div>
+  <div ng-style="{'background-color': colors[color(2)]}" class="rainbow"></div>
+  <div ng-style="{'background-color': colors[color(3)]}" class="rainbow"></div>
+  <div ng-style="{'background-color': colors[color(4)]}" class="rainbow"></div>
+  <div ng-style="{'background-color': colors[color(5)]}" class="rainbow"></div>
 </div>

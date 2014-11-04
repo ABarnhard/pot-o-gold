@@ -32,12 +32,13 @@
     };
 
     $scope.$on('win', function(){
+      $scope.result = 'Congratulations! You Got the Gold!';
       clearGame();
     });
 
     $scope.$on('game-over', function(){
+      $scope.result = 'You are a sorry loser.';
       clearGame();
-      $scope.gameStarted = false;
     });
 
     function getDelta(obj){
@@ -52,8 +53,9 @@
 
     function clearGame(){
       $scope.delta = {x:0, y:0};
-      $scope.gameStarted = false;
       $interval.cancel(moveId);
+      $scope.gameStarted = false;
+      $scope.gameOver = true;
     }
 
   }]);
